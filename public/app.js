@@ -1,1 +1,9 @@
-// 챗봇은 외부 FactChat 위젯이 담당합니다.
+document.querySelectorAll('[data-open-chat]').forEach((button) => {
+  button.addEventListener('click', () => {
+    if (window.chatWidget && typeof window.chatWidget.open === 'function') {
+      window.chatWidget.open();
+    } else {
+      window.open(window.ChatWidgetConfig.chatUrl, '_blank', 'noopener,noreferrer');
+    }
+  });
+});

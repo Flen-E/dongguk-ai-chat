@@ -3,40 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dongguk AI Chat</title>
+    <title>동국 AI Chat · 무엇이든 물어보세요</title>
+    <meta name="description" content="동국 AI Chat으로 궁금한 내용을 편하게 물어보세요." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <header class="header">
+      <a class="brand" href="./" aria-label="동국 AI Chat 홈"><span class="brand-mark">D<span>✦</span></span><span>동국 AI Chat<small>DONGGUK · AI ASSISTANT</small></span></a>
+      <nav aria-label="주 메뉴"><a href="#guide">이용 안내</a><a href="https://gs.dongguk.edu/main" target="_blank" rel="noopener noreferrer">대학원 홈페이지 ↗</a><button type="button" class="nav-chat" data-open-chat>대화 시작하기 <span>↗</span></button></nav>
+    </header>
     <main class="shell">
-      <section class="hero">
-        <div class="eyebrow"><span class="status-dot"></span> DONGGUK AI CHAT</div>
-        <h1>궁금한 내용을<br /><em>편하게 물어보세요.</em></h1>
-        <p class="intro">오른쪽 아래의 채팅 버튼을 누르면<br />AI Chat 챗봇을 바로 이용할 수 있습니다.</p>
-        <div class="connection-pill"><span class="connection-icon">↗</span><span>AI Chat 시작하기</span></div>
-      </section>
-
-      <section class="info-card">
-        <div class="info-icon">✦</div>
-        <div>
-          <span class="label">CHATBOT WIDGET</span>
-          <h2>페이지 어디서든 바로 대화하세요</h2>
-          <p>화면 오른쪽 아래에 나타나는 채팅 버튼을 클릭하면 대화창이 열립니다.</p>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> YOUR CAMPUS, A LITTLE CLOSER</div>
+          <h1 id="hero-title">궁금한 순간,<br />가장 가까운<br /><em>AI 친구.</em></h1>
+          <p class="intro">복잡하게 찾지 말고, 편하게 물어보세요.<br />동국 AI Chat이 여러분의 질문을 기다리고 있어요.</p>
+          <button class="primary-button" type="button" data-open-chat>챗봇과 대화하기 <span>↗</span></button>
+          <p class="hero-note"><span>✦</span> 처음이라도 괜찮아요. 인사부터 시작해보세요.</p>
+        </div>
+        <div class="hero-preview">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <span class="floating-label"><span>✦</span> 질문은 가볍게, 답변은 친절하게</span>
+          <section class="welcome-card" aria-label="챗봇 이용 안내">
+            <div class="card-cover"><span>HELLO, DONGGUK!</span><span class="cover-spark">✦</span></div>
+            <div class="card-content">
+              <div class="bot-avatar" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M32 14v-4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="8" r="3" fill="currentColor"/><rect x="12" y="18" width="40" height="32" rx="12" fill="white"/><path d="M9 30v10m46-10v10" stroke="white" stroke-width="5" stroke-linecap="round"/><circle cx="24" cy="32" r="3" fill="currentColor"/><circle cx="40" cy="32" r="3" fill="currentColor"/><path d="M26 41q6 5 12 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+              <h2>안녕하세요!<br />동국 AI Chat입니다 <span class="wave">✦</span></h2>
+              <p>궁금한 점이 있으신가요?<br />아래 버튼을 눌러 편하게 질문해주세요.</p>
+              <div class="conversation-entry"><span class="entry-icon">✦</span><div><strong>AI Chat과 이야기하기</strong><small>질문을 입력하면 대화가 시작돼요</small></div><span>↗</span></div>
+              <button class="card-button" type="button" data-open-chat>새 대화 시작하기 <span>→</span></button>
+              <a class="external-chat" href="https://aichat.dongguk.edu/public/chatbots/strange-leakey-arc" target="_blank" rel="noopener noreferrer">새 창에서 열기 ↗</a>
+            </div>
+            <div class="card-footer">POWERED BY <strong>AI CHAT</strong></div>
+          </section>
+          <div class="preview-caption"><span></span> 나만의 캠퍼스 도우미</div>
         </div>
       </section>
+      <section class="guide" id="guide" aria-labelledby="guide-title">
+        <div class="section-heading"><div><span class="eyebrow">LET’S GET STARTED</span><h2 id="guide-title">대화는 이렇게 시작해요.</h2></div><p>딱 세 단계면 충분해요.</p></div>
+        <div class="steps">
+          <article><span class="step-number">01</span><span class="step-symbol">↗</span><h3>채팅창을 열어요</h3><p>대화 시작 버튼이나 오른쪽 아래<br />채팅 버튼을 눌러주세요.</p></article>
+          <article><span class="step-number">02</span><span class="step-symbol">“</span><h3>편하게 질문해요</h3><p>짧은 인사부터 구체적인 질문까지,<br />평소 말하듯 입력하면 돼요.</p></article>
+          <article><span class="step-number">03</span><span class="step-symbol">✦</span><h3>대화를 이어가요</h3><p>궁금한 부분이 남아 있다면<br />추가로 질문해보세요.</p></article>
+        </div>
+      </section>
+      <aside class="reference-link"><span>대학원 챗봇을 찾고 계신가요?</span><a href="https://dgugs.channel.io/home" target="_blank" rel="noopener noreferrer">동국대학교 대학원 AI챗봇 바로가기 ↗</a></aside>
     </main>
-
-    <script src="https://plugin.factchat.bot/latest/plugin.min.js"></script>
+    <footer class="footer"><span>동국 AI Chat <small>테스트 페이지</small></span><span>작은 질문에서 시작되는 새로운 연결.</span></footer>
     <script>
       window.ChatWidgetConfig = {
         chatUrl: "https://aichat.dongguk.edu/public/chatbots/strange-leakey-arc",
         position: { bottom: 20, right: 20 },
-        buttonColor: "#1F687E",
+        buttonColor: "#E94E1A",
         customImage: "https://factchat-public.s3.ap-northeast-2.amazonaws.com/tenant-logos/3bb059de-0153-4a48-ae12-507107deeafe.jpeg",
-        title: "Chat with us",
+        title: "동국 AI Chat과 대화하기",
+        iframeWidth: "400px",
+        iframeHeight: "650px",
       };
     </script>
+    <script src="https://plugin.factchat.bot/latest/plugin.min.js" defer></script>
+    <script src="./app.js" defer></script>
   </body>
 </html>
