@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: saju-chat
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeployTrigger: off
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: FACTCHAT_API_KEY
+        sync: false
