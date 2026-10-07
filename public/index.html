@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dongguk AI Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow"><span class="status-dot"></span> DONGGUK AI CHAT</div>
+        <h1>궁금한 내용을<br /><em>편하게 물어보세요.</em></h1>
+        <p class="intro">오른쪽 아래의 채팅 버튼을 누르면<br />AI Chat 챗봇을 바로 이용할 수 있습니다.</p>
+        <div class="connection-pill"><span class="connection-icon">↗</span><span>챗봇 연결됨</span></div>
+      </section>
+
+      <section class="info-card">
+        <div class="info-icon">✦</div>
+        <div>
+          <span class="label">CHATBOT WIDGET</span>
+          <h2>페이지 어디서든 바로 대화하세요</h2>
+          <p>화면 오른쪽 아래에 나타나는 채팅 버튼을 클릭하면 대화창이 열립니다.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://plugin.factchat.bot/latest/plugin.min.js"></script>
+    <script>
+      window.ChatWidgetConfig = {
+        chatUrl: "https://aichat.dongguk.edu/public/chatbots/strange-leakey-arc",
+        position: { bottom: 20, right: 20 },
+        buttonColor: "#1F687E",
+        customImage: "https://factchat-public.s3.ap-northeast-2.amazonaws.com/tenant-logos/3bb059de-0153-4a48-ae12-507107deeafe.jpeg",
+        title: "Chat with us",
+      };
+    </script>
+  </body>
+</html>

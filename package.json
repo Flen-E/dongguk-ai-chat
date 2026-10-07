@@ -1,0 +1,9 @@
+{
+  "name": "factchat-test-client",
+  "version": "1.0.0",
+  "private": true,
+  "description": "간단한 Mindlogic AI Chat 테스트 클라이언트",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
