@@ -2,7 +2,8 @@
   "name": "factchat-test-client",
   "version": "1.0.0",
   "private": true,
-  "description": "간단한 Mindlogic AI Chat 테스트 클라이언트",
+  "description": "사주팔자 풀이 커스텀 채팅 UI와 API 프록시",
+  "engines": { "node": ">=22" },
   "scripts": {
     "start": "node server.js"
   }

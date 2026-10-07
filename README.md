@@ -1,28 +1,15 @@
-# AI Chat 임베드 테스트 페이지
+# 사주팔자 풀이
 
-교내 Mindlogic AI Chat 외부 임베드 위젯을 확인하기 위한 간단한 페이지입니다.
+기존 챗봇 API를 연결할 수 있는 커스텀 상담 UI입니다. 추천 질문, 대화 기록, 새 대화, 최소화 및 모바일 화면을 제공합니다.
 
-## 실행 방법
+## 로컬 실행
 
-```powershell
-npm start
-```
+Node.js 22 이상에서 `.env.example`을 `.env`로 복사하고 `FACTCHAT_API_KEY`를 설정한 뒤 `npm start`를 실행하세요. `http://localhost:3000`에서 대화할 수 있습니다. API 키는 서버에서만 읽습니다.
 
-브라우저에서 [http://localhost:3000](http://localhost:3000)을 엽니다.
+## 배포
 
-페이지 오른쪽 아래의 채팅 버튼은 제공받은 외부 임베드 설정으로 표시됩니다. 별도의 API 키를 페이지에 넣지 않아도 됩니다.
+GitHub Pages는 정적 파일만 제공하므로 현재 디자인 미리보기와 원래 챗봇 링크를 제공합니다. Node.js 서버에 전체 프로젝트를 배포하면 같은 UI에서 `/api/chat`을 사용해 실제로 대화합니다.
 
-실제 외부 웹사이트에 붙일 때는 `public/index.html`의 아래 두 스크립트 블록을 그대로 복사해 사용하면 됩니다.
+별도 서버와 GitHub Pages를 함께 사용할 경우 `public/config.js`의 `apiUrl`을 실제 서버의 `/api/chat` 주소로 변경하세요. 서버 환경변수 `ALLOWED_ORIGIN`에는 `https://flen-e.github.io`를 지정하세요. 브라우저 코드에는 API 키를 넣지 마세요.
 
-```html
-<script src="https://plugin.factchat.bot/latest/plugin.min.js"></script>
-<script>
-  window.ChatWidgetConfig = {
-    chatUrl: "https://aichat.dongguk.edu/public/chatbots/strange-leakey-arc",
-    position: { bottom: 20, right: 20 },
-    buttonColor: "#1F687E",
-    customImage: "https://factchat-public.s3.ap-northeast-2.amazonaws.com/tenant-logos/3bb059de-0153-4a48-ae12-507107deeafe.jpeg",
-    title: "Chat with us",
-  };
-</script>
-```
+서버 실행 명령은 `npm start`, 상태 확인 경로는 `/api/health`입니다. API 연결이 없는 화면에서는 답변을 생성하거나 대화가 연결된 것처럼 표시하지 않습니다.

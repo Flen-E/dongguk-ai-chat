@@ -4,8 +4,10 @@ const path = require('node:path');
 
 const ROOT = __dirname;
 const PUBLIC_DIR = path.join(ROOT, 'public');
-const PORT = Number(process.env.PORT || loadEnvFile().PORT || 3000);
-const API_KEY = process.env.FACTCHAT_API_KEY || loadEnvFile().FACTCHAT_API_KEY;
+const fileEnv = loadEnvFile();
+const PORT = Number(process.env.PORT || fileEnv.PORT || 3000);
+const API_KEY = process.env.FACTCHAT_API_KEY || fileEnv.FACTCHAT_API_KEY;
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || fileEnv.ALLOWED_ORIGIN;
 const FACTCHAT_ENDPOINT = 'https://factchat-cloud.mindlogic.ai/v1/gateway/chatbots/51559/chat/completions';
 
 function loadEnvFile() {
@@ -68,8 +70,8 @@ function getContent(responseBody) {
 
 async function handleChat(request, response) {
   if (!API_KEY) {
-    return sendJson(response, 500, {
-      error: 'FACTCHAT_API_KEY가 설정되지 않았습니다. .env 파일을 확인하세요.',
+    return sendJson(response, 503, {
+      error: '아직 대화 서버 연결이 준비되지 않았습니다. 잠시 후 다시 시도해주세요.',
     });
   }
 
@@ -84,7 +86,7 @@ async function handleChat(request, response) {
     ? body.messages.filter(
         (message) =>
           message &&
-          ['user', 'assistant', 'system'].includes(message.role) &&
+          ['user', 'assistant'].includes(message.role) &&
           typeof message.content === 'string' &&
           message.content.trim()
       )
@@ -105,6 +107,7 @@ async function handleChat(request, response) {
         model: 'chatbot',
         messages,
       }),
+      signal: AbortSignal.timeout(80000),
     });
 
     const rawText = await apiResponse.text();
@@ -129,7 +132,6 @@ async function handleChat(request, response) {
 
     return sendJson(response, 200, { content });
   } catch (error) {
-    console.error(error);
     return sendJson(response, 502, {
       error: 'Mindlogic API에 연결하지 못했습니다. 네트워크 또는 API 설정을 확인하세요.',
     });
@@ -165,6 +167,19 @@ function serveStatic(request, response) {
 }
 
 const server = http.createServer((request, response) => {
+  if (ALLOWED_ORIGIN && request.headers.origin === ALLOWED_ORIGIN) {
+    response.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+    response.setHeader('Vary', 'Origin');
+    response.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  }
+  if (request.method === 'OPTIONS' && request.url === '/api/chat') {
+    response.writeHead(204);
+    return response.end();
+  }
+  if (request.method === 'GET' && request.url === '/api/health') {
+    return sendJson(response, 200, { ready: Boolean(API_KEY) });
+  }
   if (request.method === 'POST' && request.url === '/api/chat') {
     return handleChat(request, response);
   }
@@ -176,6 +191,9 @@ const server = http.createServer((request, response) => {
   sendJson(response, 405, { error: '허용되지 않은 요청입니다.' });
 });
 
-server.listen(PORT, () => {
-  console.log(`테스트 페이지: http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`테스트 페이지: http://localhost:${PORT}`);
+  });
+}
+module.exports = server;
